@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Cities } from './mock-cities';
+import { City } from './city';
 
 @Component({
   selector: 'app-root',
@@ -7,7 +8,5 @@ import { Cities } from './mock-cities';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'Visited Cities in Spain';
 
-  cities = Cities;
 }

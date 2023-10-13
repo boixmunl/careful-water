@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { City } from '../city';
+import { Cities } from '../mock-cities';
 
 @Component({
   selector: 'app-cities',
@@ -7,5 +8,13 @@ import { City } from '../city';
   styleUrls: ['./cities.component.scss']
 })
 export class CitiesComponent {
-  @Input() city: City;
+  title = 'Visited Cities in Spain';
+
+  cities = Cities;
+
+  selectedCity?: City;
+
+  onSelect(city: City): void {
+    this.selectedCity = city;
+  }
 }
