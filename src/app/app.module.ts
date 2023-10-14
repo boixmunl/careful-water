@@ -6,17 +6,23 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CitiesComponent } from './cities/cities.component';
 import { CityComponent } from './cities/city/city.component';
+import { MapComponent } from './map/map.component';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
     CitiesComponent,
-    CityComponent
+    CityComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule, 
+    LeafletModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

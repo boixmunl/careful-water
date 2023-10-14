@@ -1,0 +1,6 @@
+<div class="map-container"
+  leaflet
+  [leafletOptions]="mapService.options"
+  (leafletMapReady)="mapService.onMapReady($event)"
+  (leafletClick)="mapService.mapClicked($event)">
+</div>
