@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { City } from 'src/app/city';
+import { CitiesService } from 'src/app/services/cities.service';
 
 @Component({
   selector: 'app-city',
@@ -8,10 +9,21 @@ import { City } from 'src/app/city';
 })
 export class CityComponent implements OnInit {
   @Input() city: City;
+  @Output() deleteEmitter = new EventEmitter<number>();
 
-  constructor() { }
+  constructor(public citiesService: CitiesService) { }
 
   ngOnInit(): void {
   }
 
+  save(): void {
+    if (this.city) {
+      this.citiesService.updateCity(this.city).subscribe();
+    }
+  }
+
+  delete(city: City): void {
+    this.deleteEmitter.emit(city.id);
+    this.citiesService.deleteCity(city.id).subscribe();
+  }
 }
