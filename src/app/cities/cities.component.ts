@@ -1,6 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectorRef, Component, Input } from '@angular/core';
 import { City } from '../city';
 import { CitiesService } from '../services/cities.service';
+import { MapService } from '../services/map.service';
 
 @Component({
   selector: 'app-cities',
@@ -8,37 +9,30 @@ import { CitiesService } from '../services/cities.service';
   styleUrls: ['./cities.component.scss']
 })
 export class CitiesComponent {
-  title = 'Visited Cities in Spain';
+  title = 'Visited Cities';
+  selectedCity: City | null
 
-  constructor(private citiesService:CitiesService){}
-
-  cities: City[] = []
-
-  selectedCity?: City;
-
-  onSelect(city: City): void {
-    this.selectedCity = city;
-  }
+  constructor(public citiesService: CitiesService, public mapService: MapService, private changeDetectorRef: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.getCities();
+    this.mapService.selectedCity.subscribe(city => {
+      this.selectedCity = city
+      this.changeDetectorRef.detectChanges();
+    });
   }
 
   getCities(): void {
-    this.citiesService.getCities().subscribe(city => this.cities = city)
+    this.citiesService.getCities().subscribe(cities => this.citiesService.setCities(cities))
   }
 
-  add(title: string, content: string, image_url: string, lat: number, long: number): void {
-    title = title.trim();
-    if (!title) { return; }
-    this.citiesService.addCity({id: this.cities[this.cities.length-1].id + 1, image_url, title, content,  lat, long, created_at: new Date(), updated_at: new Date()} as City)
-      .subscribe(city => {
-        this.cities.push(city);
-      });
+  onSelect(city: City) {
+    this.mapService.onSelect(city);
+    this.mapService.openPopup(city);
   }
 
-  delete(id: number){
-    this.cities = this.cities.filter(city => city.id !== id);
-    this.selectedCity = undefined;
+  delete(id: number) {
+    this.citiesService.cities = this.citiesService.cities.filter(city => city.id !== id);
+    this.mapService.deselectCity();
   }
 }

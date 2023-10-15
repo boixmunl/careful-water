@@ -1,10 +1,14 @@
 import { Injectable } from '@angular/core';
-import * as Leaflet from 'leaflet'; 
+import * as Leaflet from 'leaflet';
+import { City } from '../city';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MapService {
+
+  selectedCity = new Subject<City | null>();
 
   constructor() { }
 
@@ -21,12 +25,12 @@ export class MapService {
   }
   markerArray: Array<MarkerMap>;
   isMapReady = false;
-  areMarkersSetted=false;
+  areMarkersSetted = false;
 
-  public setInitialMarkers(markerArray: Array<MarkerMap>){
-    this.markerArray=markerArray;
-    this.areMarkersSetted=true;
-    if(this.isMapReady){
+  public setInitialMarkers(markerArray: Array<MarkerMap>) {
+    this.markerArray = markerArray;
+    this.areMarkersSetted = true;
+    if (this.isMapReady) {
       this.initMarkers();
     }
   }
@@ -34,23 +38,23 @@ export class MapService {
   initMarkers() {
     for (let index = 0; index < this.markerArray.length; index++) {
       const data = this.markerArray[index];
-      const marker = this.generateMarker(data, index);
-      marker.addTo(this.map).bindPopup(`<b>${data.position.lat},  ${data.position.lng}</b>`);
+      const marker = this.generateMarker(data);
+      marker.addTo(this.map).bindPopup(`<b>${data.city.title}:</b> ${data.position.lat},  ${data.position.lng}`);
       this.map.panTo(data.position);
       this.markers.push(marker);
     }
+    this.showAllMarkers();
   }
 
-  generateMarker(data: any, index: number) {
+  generateMarker(data: any) {
     return Leaflet.marker(data.position, { draggable: data.draggable })
-      .on('click', (event) => this.markerClicked(event, index))
-      .on('dragend', (event) => this.markerDragEnd(event, index));
+      .on('click', () => this.onSelect(data.city));
   }
 
   onMapReady($event: Leaflet.Map) {
     this.map = $event;
-    this.isMapReady=true;
-    if(this.areMarkersSetted){
+    this.isMapReady = true;
+    if (this.areMarkersSetted) {
       this.initMarkers();
     }
   }
@@ -59,20 +63,30 @@ export class MapService {
     console.log($event.latlng.lat, $event.latlng.lng);
   }
 
-  markerClicked($event: any, index: number) {
-    console.log($event.latlng.lat, $event.latlng.lng);
+  showAllMarkers() {
+    let group = Leaflet.featureGroup(this.markers);
+    this.map.fitBounds(group.getBounds());
   }
 
-  markerDragEnd($event: any, index: number) {
-    console.log($event.target.getLatLng());
-  } 
+  onSelect(city: City): void {
+    this.selectedCity.next(city);
+  }
+
+  deselectCity() {
+    this.selectedCity.next(null);
+  }
+
+  openPopup(city: City) {
+    this.markers[city.id - 1].openPopup()
+  }
 }
 
-export interface MarkerMap{
+export interface MarkerMap {
+  city: City,
   position:
-    {
-      lat: number,
-      lng: number
-    },
+  {
+    lat: number,
+    lng: number
+  },
   draggable: boolean
 }

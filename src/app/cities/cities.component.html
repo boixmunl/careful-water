@@ -1,36 +1,14 @@
 <h2>{{title}}</h2>
 
-<div class="form">
-    <label for="new-city">City name: </label>
-    <input id="new-city" #cityTitle />
-
-    <label for="new-city">Content: </label>
-    <input id="new-city" #cityContent />
-
-    <label for="new-city">Image URL: </label>
-    <input id="new-city" #cityImage />
-
-    <label for="new-city">Latitude: </label>
-    <input id="new-city" type="number" #cityLatitude />
-
-    <label for="new-city">Longitude: </label>
-    <input id="new-city" type="number" #cityLongitude />
-
-    <!-- (click) passes input value to add() and then clears the input -->
-    <button type="button" class="add-button" (click)="add(cityTitle.value, cityContent.value, cityImage.value, +cityLatitude.value, +cityLongitude.value); cityTitle.value=''">
-        Add city
-    </button>
-</div>
-
 <ul class="cities">
-    <li *ngFor="let city of cities">
-        <button [class.selected]="city === selectedCity" type="button" (click)="onSelect(city)">
+    <li *ngFor="let city of citiesService.cities">
+        <button [class.selected]="city === this.selectedCity" type="button" (click)="this.onSelect(city)">
             <span class="badge">{{city.id}}</span>
             <span class="title">{{city.title}}</span>
         </button>
     </li>
 </ul>
 
-<div *ngIf="selectedCity">
-    <app-city [city]="selectedCity" (deleteEmitter)="delete($event)"></app-city>
+<div *ngIf="this.selectedCity">
+    <app-city [city]="this.selectedCity" (deleteEmitter)="delete($event)"></app-city>
 </div>

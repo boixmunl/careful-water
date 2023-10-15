@@ -10,6 +10,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class CitiesService {
 
+  cities: City[] = []
+
   endpointUrl = 'http://127.0.0.1:3000/api/v1/posts'
   endpointUrlId = 'http://127.0.0.1:3000/api/v1/posts/'
 
@@ -23,13 +25,17 @@ export class CitiesService {
     const cities = this.http.get<City[]>(this.endpointUrl).pipe(tap(cities => {
       let initialMarkers: Array<MarkerMap> = [];
       cities.forEach(city => {
-        let marker: MarkerMap = { position: { lat: city.lat, lng: city.long }, draggable: false };
+        let marker: MarkerMap = { city: city, position: { lat: city.lat, lng: city.long }, draggable: false };
         initialMarkers.push(marker)
       })
       this.mapService.setInitialMarkers(initialMarkers);
     }));
 
     return cities;
+  }
+
+  setCities(cities: City[]) {
+    this.cities = cities;
   }
 
   updateCity(city: City): Observable<any> {
@@ -47,10 +53,14 @@ export class CitiesService {
     );
   }
 
-  deleteCity(id: number): Observable<City> {
+  deleteCity(id: number | undefined): Observable<City> {
     const url = `${this.endpointUrl}/${id}`;
 
     return this.http.delete<City>(this.endpointUrlId + id, this.httpOptions).pipe(
       tap(_ => console.log(`deleted city id=${id}`)));
+  }
+
+  getCityById(id: number) {
+    return this.cities.find(x => x.id === id);
   }
 }

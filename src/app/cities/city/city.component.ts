@@ -8,7 +8,7 @@ import { CitiesService } from 'src/app/services/cities.service';
   styleUrls: ['./city.component.scss']
 })
 export class CityComponent implements OnInit {
-  @Input() city: City;
+  @Input() city: City | null;
   @Output() deleteEmitter = new EventEmitter<number>();
 
   constructor(public citiesService: CitiesService) { }
@@ -22,8 +22,8 @@ export class CityComponent implements OnInit {
     }
   }
 
-  delete(city: City): void {
-    this.deleteEmitter.emit(city.id);
-    this.citiesService.deleteCity(city.id).subscribe();
+  delete(city: City | null): void {
+    this.deleteEmitter.emit(city?.id);
+    this.citiesService.deleteCity(city?.id).subscribe();
   }
 }

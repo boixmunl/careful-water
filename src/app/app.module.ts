@@ -9,13 +9,15 @@ import { CityComponent } from './cities/city/city.component';
 import { MapComponent } from './map/map.component';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { HttpClientModule } from '@angular/common/http';
+import { CityEditorComponent } from './city-editor/city-editor.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CitiesComponent,
     CityComponent,
-    MapComponent
+    MapComponent,
+    CityEditorComponent
   ],
   imports: [
     BrowserModule,
