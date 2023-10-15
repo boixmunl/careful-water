@@ -25,7 +25,7 @@ export class CitiesService {
     const cities = this.http.get<City[]>(this.endpointUrl).pipe(tap(cities => {
       let initialMarkers: Array<MarkerMap> = [];
       cities.forEach(city => {
-        let marker: MarkerMap = { city: city, position: { lat: city.lat, lng: city.long }, draggable: false };
+        let marker: MarkerMap = { city, position: { lat: city.lat, lng: city.long }, draggable: false };
         initialMarkers.push(marker)
       })
       this.mapService.setInitialMarkers(initialMarkers);

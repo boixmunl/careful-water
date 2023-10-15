@@ -77,7 +77,24 @@ export class MapService {
   }
 
   openPopup(city: City) {
-    this.markers[city.id - 1].openPopup()
+    const index = this.markerArray.findIndex(x => x.city.id === city.id);
+    this.markers[index].openPopup();
+  }
+
+  addMarker(city: any){
+    let data: MarkerMap = { city, position: { lat: city?.lat, lng: city?.long }, draggable: false };
+    const marker = this.generateMarker(data);
+    marker.addTo(this.map).bindPopup(`<b>${data.city.title}:</b> ${data.position.lat},  ${data.position.lng}`);
+    this.markerArray.push(data);
+    this.map.panTo(data.position);
+    this.markers.push(marker)
+  }
+
+  deleteMarker(city: City | null) {
+    const index = this.markerArray.findIndex(x => x.city.id === city?.id);
+    this.map.removeLayer(this.markers[index]);
+    this.markers = this.markers.filter(obj => obj !== this.markers[index]);
+    this.markerArray = this.markerArray.filter(obj => obj !== this.markerArray[index])
   }
 }
 
