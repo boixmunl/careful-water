@@ -1,14 +1,17 @@
-<h2>{{title}}</h2>
+<div class="container">
+    <div class="container">
+        <h2>{{title}}</h2>
+        <ul class="cities citieslist">
+            <li *ngFor="let city of citiesService.cities">
+                <button [class.selected]="city === this.selectedCity" type="button" (click)="this.onSelect(city)">
+                    <span class="badge">{{city.id}}</span>
+                    <span class="title">{{city.title}}</span>
+                </button>
+            </li>
+        </ul>
+    </div>
 
-<ul class="cities">
-    <li *ngFor="let city of citiesService.cities">
-        <button [class.selected]="city === this.selectedCity" type="button" (click)="this.onSelect(city)">
-            <span class="badge">{{city.id}}</span>
-            <span class="title">{{city.title}}</span>
-        </button>
-    </li>
-</ul>
-
-<div *ngIf="this.selectedCity">
-    <app-city [city]="this.selectedCity" (deleteEmitter)="delete($event)"></app-city>
+    <div class="container" *ngIf="this.selectedCity">
+        <app-city [city]="this.selectedCity" (deleteEmitter)="delete($event)"></app-city>
+    </div>
 </div>

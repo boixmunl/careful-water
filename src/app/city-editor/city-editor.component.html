@@ -1,24 +1,25 @@
-<h2>{{title}}</h2>
+<div class="city-editor">
+    <h2>{{title}}</h2>
+    <div class="form">
+        <label for="new-city">City name: </label>
+        <input id="new-city" #cityTitle />
 
-<div class="form">
-    <label for="new-city">City name: </label>
-    <input id="new-city" #cityTitle />
+        <label for="new-city">Content: </label>
+        <input id="new-city" #cityContent />
 
-    <label for="new-city">Content: </label>
-    <input id="new-city" #cityContent />
+        <label for="new-city">Image URL: </label>
+        <input id="new-city" #cityImage />
 
-    <label for="new-city">Image URL: </label>
-    <input id="new-city" #cityImage />
+        <label for="new-city">Latitude: </label>
+        <input id="new-city" type="number" #cityLatitude />
 
-    <label for="new-city">Latitude: </label>
-    <input id="new-city" type="number" #cityLatitude />
+        <label for="new-city">Longitude: </label>
+        <input id="new-city" type="number" #cityLongitude />
 
-    <label for="new-city">Longitude: </label>
-    <input id="new-city" type="number" #cityLongitude />
-
-    <!-- (click) passes input value to add() and then clears the input -->
-    <button type="button" class="add-button"
-        (click)="add(cityTitle.value, cityContent.value, cityImage.value, +cityLatitude.value, +cityLongitude.value); cityTitle.value=''">
-        Add city
-    </button>
+        <!-- (click) passes input value to add() and then clears the input -->
+        <button type="button" class="add-button"
+            (click)="add(cityTitle.value, cityContent.value, cityImage.value, +cityLatitude.value, +cityLongitude.value); cityTitle.value=''">
+            Add city
+        </button>
+    </div>
 </div>

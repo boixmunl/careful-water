@@ -1,9 +1,35 @@
 /* CitiesComponent's private CSS styles */
 .cities {
-    margin: 0 0 2em 0;
     list-style-type: none;
     padding: 0;
-    width: 15em;
+}
+
+app-city {
+    height: 100%;
+}
+
+.citieslist {
+    overflow: scroll;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.container>div {
+    flex-grow: 1;
+    height: 25%;
+    overflow: hidden;
+}
+
+.container>div:first-child {
+    flex-basis: 30vh;
+}
+
+.container>div:nth-child(2) {
+    flex-basis: 70vh;
 }
 
 .cities li {

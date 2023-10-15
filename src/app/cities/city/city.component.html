@@ -1,19 +1,21 @@
-<h2>{{city?.title | uppercase}} Details</h2>
-<div class="form">
-    <div><span>id: </span>{{city?.id}}</div>
-    <label for="new-city">City name: </label>
-    <input id="new-city" [(ngModel)]="city.title" placeholder="name" />
+<div class="city-component">
+    <h2>{{city?.title | uppercase}} Details</h2>
+    <div class="form">
+        <div><span>id: </span>{{city?.id}}</div>
+        <label for="new-city">City name: </label>
+        <input id="new-city" [(ngModel)]="city.title" placeholder="name" />
 
-    <label for="new-city">Content: </label>
-    <input id="new-city" [(ngModel)]="city.content" placeholder="content" />
+        <label for="new-city">Content: </label>
+        <input id="new-city" [(ngModel)]="city.content" placeholder="content" />
 
-    <label for="new-city">Image URL: </label>
-    <img src="{{city.image_url}}">
-    <input id="new-city" [(ngModel)]="city.image_url" placeholder="image_url" />
-    <div><span>lat: </span>{{city?.lat}}</div>
-    <div><span>long: </span>{{city?.long}}</div>
-    <div><span>created_at: </span>{{city?.created_at | date: 'dd/MM/yyyy'}}</div>
-    <div><span>updated_at: </span>{{city?.updated_at | date: 'dd/MM/yyyy'}}</div>
+        <label for="new-city">Image URL: </label>
+        <img src="{{city.image_url}}">
+        <input id="new-city" [(ngModel)]="city.image_url" placeholder="image_url" />
+        <div><span>lat: </span>{{city?.lat}}</div>
+        <div><span>long: </span>{{city?.long}}</div>
+        <div><span>created_at: </span>{{city?.created_at | date: 'dd/MM/yyyy'}}</div>
+        <div><span>updated_at: </span>{{city?.updated_at | date: 'dd/MM/yyyy'}}</div>
+        <button type="button" (click)="save()">save</button>
+        <button type="button" class="delete" title="delete city" (click)="delete(city)">x</button>
+    </div>
 </div>
-<button type="button" (click)="save()">save</button>
-<button type="button" class="delete" title="delete city" (click)="delete(city)">x</button>

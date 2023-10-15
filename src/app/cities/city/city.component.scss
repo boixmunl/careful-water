@@ -1,4 +1,12 @@
 .form {
     display: flex;
     flex-direction: column;
+    height: 100%;
+    overflow: scroll;
+}
+
+.city-component {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
