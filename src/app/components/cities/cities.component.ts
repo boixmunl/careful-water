@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, Input } from '@angular/core';
-import { City } from '../city';
-import { CitiesService } from '../services/cities.service';
-import { MapService } from '../services/map.service';
+import { City } from '../../city';
+import { CitiesService } from '../../services/cities.service';
+import { MapService } from '../../services/map.service';
 
 @Component({
   selector: 'app-cities',

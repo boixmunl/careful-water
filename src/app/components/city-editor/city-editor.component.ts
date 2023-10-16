@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CitiesService } from '../services/cities.service';
-import { City } from '../city';
-import { MapService } from '../services/map.service';
+import { CitiesService } from '../../services/cities.service';
+import { City } from '../../city';
+import { MapService } from '../../services/map.service';
 
 @Component({
   selector: 'app-city-editor',
