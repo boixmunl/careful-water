@@ -1,27 +1,17 @@
 # CarefulWater
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.17.
+Project made by Candidate Lluc Boix
 
-## Development server
+The name is choosen in order to not reveal for which company and project is made this test
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+All the UI is fully screen responsive
 
-## Code scaffolding
+No UI frameworks used in order to show CSS abilities
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Fully tested with no detected bugs
 
-## Build
+Basic unit test written for all Components and Services
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+This is made with the time amount that I consider worth for job interviews tests (two workdays => 16 hours)
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+This project is in Angular version 12.2.17.
