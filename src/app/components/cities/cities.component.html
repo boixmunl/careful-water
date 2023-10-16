@@ -1,6 +1,6 @@
 <div class="container">
     <div class="container">
-        <h2>{{title}}</h2>
+        <h2>Visited Cities</h2>
         <ul class="cities citieslist">
             <li *ngFor="let city of citiesService.cities">
                 <button [class.selected]="city === this.selectedCity" type="button" (click)="this.onSelect(city)">

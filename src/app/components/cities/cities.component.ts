@@ -9,7 +9,6 @@ import { MapService } from '../../services/map.service';
   styleUrls: ['./cities.component.scss']
 })
 export class CitiesComponent {
-  title = 'Visited Cities';
   selectedCity: City | null
 
   constructor(public citiesService: CitiesService, public mapService: MapService, private changeDetectorRef: ChangeDetectorRef) { }

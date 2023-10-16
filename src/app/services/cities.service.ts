@@ -53,7 +53,7 @@ export class CitiesService {
     );
   }
 
-  deleteCity(id: number | undefined): Observable<City> {
+  deleteCity(id: number | undefined): Observable<City | null> {
     const url = `${this.endpointUrl}/${id}`;
 
     return this.http.delete<City>(this.endpointUrlId + id, this.httpOptions).pipe(

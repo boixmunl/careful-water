@@ -12,7 +12,18 @@ export class CityComponent implements OnInit {
   @Input() city: any;
   @Output() deleteEmitter = new EventEmitter<number>();
 
-  constructor(public citiesService: CitiesService, public mapService: MapService) { }
+  constructor(public citiesService: CitiesService, public mapService: MapService) {
+    this.city = {
+      id: undefined,
+      title: undefined,
+      content: undefined,
+      lat: undefined,
+      long: undefined,
+      image_url: undefined,
+      created_at: undefined,
+      updated_at: undefined
+    };
+  }
 
   ngOnInit(): void {
   }
