@@ -17,7 +17,7 @@
         <input id="new-city" type="number" #cityLongitude />
 
         <!-- (click) passes input value to add() and then clears the input -->
-        <button type="button" class="add-button"
+        <button type="button" class="add-button footer-button"
             (click)="add(cityTitle.value, cityContent.value, cityImage.value, +cityLatitude.value, +cityLongitude.value); cityTitle.value=''">
             Add city
         </button>
